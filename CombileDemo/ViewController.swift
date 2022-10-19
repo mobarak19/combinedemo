@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         
         APICaller.shared.fetchCompanies()
             .receive(on: DispatchQueue.main)
-            .sink (receiveCompletion:{ completion in
+            .sink(receiveCompletion:{ completion in
             switch completion{
             case .finished:
                 print("finished")
@@ -85,12 +85,17 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TVC.identifire, for: indexPath) as! TVC
-                
+         
+        //cell.selectedBackgroundView?.backgroundColor = .systemTeal
+        
         cell.actions.sink { str in
             print(str)
         }.store(in: &observers)
         
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
