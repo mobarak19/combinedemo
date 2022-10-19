@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         return tbl
     }()
     
+    
     private var observers = [AnyCancellable]()
     
     private var models = [String]()
